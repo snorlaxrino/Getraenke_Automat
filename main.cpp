@@ -13,9 +13,17 @@ DigitalOut in1(PC_5);
 DigitalOut led(PC_0);
 DigitalIn tasterMenu(PC_11);
 DigitalIn tasterSelected(PC_10);
+InterruptIn  tasterShutdown(PC_12);
 lcd mylcd;
 int menuNumber = 0;
 int drinkSelected = 0;
+void isr_taste_motor_umschalten(void)
+{
+    in1 = 0; // forward out 1 & 2
+    in2 = 0; // forward in1=0 in2=1 out 1 & 2
+    in3 = 0;
+    in4 = 0;
+}
 void clickTasterMenu() {
   switch (menuNumber) {
 
@@ -80,6 +88,9 @@ void clickSelected(){
 int main() {
   tasterSelected.mode(PullDown);
   tasterMenu.mode(PullDown);
+  tasterShutdown.mode(PullDown);
+  tasterShutdown.rise(&isr_taste_motor_umschalten);
+  tasterShutdown.enable_irq();
   printf("Int i= %d\n",menuNumber);
   mylcd.clear();
   mylcd.printf("click button");
