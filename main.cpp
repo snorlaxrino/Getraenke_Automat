@@ -46,23 +46,32 @@ void clickTasterMenu() {
 }
 void clickSelected(){
     if (drinkSelected==0) {
-        in3 = 0;
-        in4 = 0;
         in1 = 0; // forward out 1 & 2
         in2 = 1; // forward in1=0 in2=1 out 1 & 2
+        thread_sleep_for(10000);
+        in1 = 0; // forward out 1 & 2
+        in2 = 0; // forward in1=0 in2=1 out 1 & 2
         printf("motor1 rennt: %d\n ",drinkSelected);
     }
     if (drinkSelected==1) {
-        in1 = 0;
-        in2 = 0;
         in3 = 1;
+        in4 = 0;
+        thread_sleep_for(90000);
+        in3 = 0;
         in4 = 0;
         printf("motor2 rennt: %d\n",drinkSelected);
     }
     if (drinkSelected==2) {
         in1 = 0; // forward out 1 & 2
         in2 = 1;
+        thread_sleep_for(10000);
+        in1 = 0; // forward out 1 & 2
+        in2 = 0;
+
         in3 = 1;
+        in4 = 0;
+        thread_sleep_for(80000);
+        in3 = 0;
         in4 = 0;
         printf("beide rennt %d\n",drinkSelected);
     }
