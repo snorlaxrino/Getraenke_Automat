@@ -5,3 +5,4 @@ projectfiles
 mbed-os
 BUILD
 
+LCD_i2c_GSOE
